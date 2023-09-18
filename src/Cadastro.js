@@ -10,6 +10,7 @@ import {
 
 const Cadastro = ({ navigation }) => {
   return (
+    
     <View style = {styles.container}>
       <Text style = {styles.title}>
         Cadastre-se

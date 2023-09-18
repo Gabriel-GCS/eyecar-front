@@ -1,68 +1,117 @@
 import React from "react";
 import {
+  SafeAreaView,
   Text,
   View,
   StyleSheet,
   TouchableOpacity,
   Alert,
+  Image,
   TextInput,
+  ImageBackground
 } from "react-native";
+
+const image = { uri: 'https://cdn.discordapp.com/attachments/638525255744225280/1153450485525786734/pexels-yurii-hlei-1545743.jpg'}
+const logo  = require('../assets/logo.png')
 
 const Login = ({ navigation }) => {
   return (
-    <View style = {styles.container}>
-      <Text style = {styles.text}>
-        Login
-      </Text>
-      <TextInput style={styles.textInput} placeholder= "Usuário" />
-      <TextInput style={styles.textInput} placeholder= "Senha" secureTextEntry/>
-    
-      <Text style = {styles.forget}>
-        Forget Password
-      </Text>
+    <ImageBackground source={image} style={styles.image} blurRadius={8}>
+      <SafeAreaView style = {styles.tela}>
+        <View style = {styles.container}>
+          
+            <View style = {{flexDirection:'row', alignItems:'center', justifyContent:'center', gap:15}}>
+              <Text style = {styles.title}>
+                EyeCar
+              </Text>
+              <Image style = {styles.logo} source = {logo}/>
+            </View>
 
-      <TouchableOpacity style={styles.touch} onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.btnLogin}>
-          Login
-        </Text>
-      </TouchableOpacity>
+            <Text style = {styles.text}>
+              Login
+            </Text>
+            <TextInput placeholderTextColor="#000"  style={styles.textInput} placeholder= "Usuário" clearButtonMode="always"/>
+            <TextInput placeholderTextColor="#000"  style={styles.textInput} placeholder= "Senha" secureTextEntry clearButtonMode="always"/>
+          
+            <Text style = {styles.forget}>
+              Forget Password
+            </Text>
 
-      <TouchableOpacity style={styles.touch} onPress={() => navigation.navigate('Cadastro')}>
-        <Text style={styles.btnLogin}>
-          Cadastre-se
-        </Text>
-      </TouchableOpacity>
+            <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('Home')}>
+              <Text style={styles.textButton}>
+                Login
+              </Text>
+            </TouchableOpacity>
 
-    </View>
+            <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('Cadastro')}>
+              <Text style={styles.textButton}>
+                Cadastre-se 
+              </Text>
+            </TouchableOpacity>
+
+          
+          
+      </View>
+
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container:{
-    flex: 1,
     paddingTop: 20, 
+    paddingHorizontal: 16,
   },
+
+  logo: {
+    width:110,
+    height:40,
+  },
+
+  title: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: 40,
+    
+  },  
 
   text:{
     marginTop: 100,
     fontSize: 20,
     fontWeight: "bold",
-    color: "#004aad",
+    color: "white",
     textAlign: "center",
+    textTransform: "uppercase",
+  },
+
+  image: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    
   },
 
   textInput: {
-    borderWidth: 2,
-    padding: 10,
-    borderRadius: 25,
+    padding: 16,
+    borderRadius: 8,
     marginTop: 10,
-    borderColor:"black"
+    color:'black',
+    backgroundColor: 'white',
+    borderBottomWidth: 3,
+    borderBottomColor: "#004aad"
+  },
+
+  textButton: {
+    color: 'white',
   },
 
   forget: {
     textAlign: "center",
-    color: "#004aad",
+    color: "white",
     marginTop: 10,
+    marginBottom: 64,
   },
 
   btnLogin: {
@@ -70,8 +119,9 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontWeight: "bold",
-    borderRadius: 15,
-    padding: 15,
+    borderRadius: 5,
+    padding: 10,
+    alignItems: "center",
     marginTop: 10,
   },
 })

@@ -1,0 +1,774 @@
+[
+    {
+        "_id": {
+          "$oid": "64ee52eed80676022108c0ae"
+        },
+        "img_url":"https://cdn.discordapp.com/attachments/638525255744225280/1153137195000012840/novo-gol.png",
+        "brand": "Volkswagen",
+        "model": "Gol",
+        "year": 2017,
+        "version": "1.6 MSI Trendline",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 11,
+            "ethanol": 7.6
+          },
+          "road": {
+            "gasoline": 13.1,
+            "ethanol": 9.2
+          }
+        },
+        "dimensions": {
+          "length": 3895,
+          "width": 1656,
+          "height": 1.464,
+          "distance": 2.465,
+          "trunk": 285,
+          "weight": 983,
+          "gas_tank": 55
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 101,
+            "ethanol": 104
+          },
+          "cylinders": 4,
+          "valves": 8,
+          "displacement": 1598,
+          "engine_code": "EA111"
+        },
+        "transmission": {
+          "shift": "Manual",
+          "gear": 5
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 189,
+            "ethanol": 187
+          },
+          "acceleration": {
+            "gasoline": 10,
+            "ethanol": 9.8
+          }
+        },
+        "tire": {
+          "front": "175/70 R14",
+          "rear": "175/70 R14"
+        },
+        "breakes": {
+          "front": "Disco ventilado",
+          "rear": "Tambor"
+        },
+        "canonical_problems": "Falta de lubrificação do motor; Ruidos na suspenção dianteira",
+        "questions": ""
+      },
+      {
+        "_id": {
+          "$oid": "64ee5317d80676022108c0af"
+        },
+        "img_url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJUR-Y0iZTvuuQbRJwqrhMSl_-6v8DAx4GRDrbIm8CowRWYcdt1fQMK96DtzzUvCkpuHY&usqp=CAU",
+        "brand": "Volkswagen",
+        "model": "Golf",
+        "year": 2016,
+        "version": "GTI",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 10.5,
+            "ethanol": ""
+          },
+          "road": {
+            "gasoline": 15.4,
+            "ethanol": ""
+          }
+        },
+        "dimensions": {
+          "length": 4.268,
+          "width": 2.027,
+          "height": 1.456,
+          "distance": 2.631,
+          "trunk": 338,
+          "weight": 1317,
+          "gas_tank": 50
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 220,
+            "ethanol": ""
+          },
+          "cylinders": 4,
+          "valves": 16,
+          "displacement": 1984,
+          "engine_code": "EA888"
+        },
+        "transmission": {
+          "shift": "Automatizada (DSG DQ250)",
+          "gear": 6
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 237,
+            "ethanol": ""
+          },
+          "acceleration": {
+            "gasoline": 7.2,
+            "ethanol": ""
+          }
+        },
+        "tire": {
+          "front": "225/45 R17",
+          "rear": "225/45 R17"
+        },
+        "breakes": {
+          "front": "Disco ventilado",
+          "rear": "Disco Sólido"
+        },
+        "canonical_problems": "Problmea na bomba d'agua; barulhos no teto solar; ",
+        "questions": ""
+      },
+      {
+        "_id": {
+          "$oid": "64ee52b6d80676022108c0ac"
+        },
+        "brand": "Volkswagen",
+        "model": "Jetta",
+        "img_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmWRtO9pUGkuONMe1jKNIcU8yogTPSawKgKQ&usqp=CAU",
+        "year": 2013,
+        "version": "Confortline",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 7.8,
+            "ethanol": 6.1
+          },
+          "road": {
+            "gasoline": 10.8,
+            "ethanol": 8.8
+          }
+        },
+        "dimensions": {
+          "length": 4.644,
+          "width": 1.778,
+          "height": 1.473,
+          "distance": 2.651,
+          "trunk": 510,
+          "weight": 1346,
+          "gas_tank": 55
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 116,
+            "ethanol": 120
+          },
+          "cylinders": 4,
+          "valves": 8,
+          "displacement": 1984,
+          "engine_code": "EA113"
+        },
+        "transmission": {
+          "shift": "Automático (Aisin TF-60SN)",
+          "gear": 6
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 202,
+            "ethanol": 195
+          },
+          "acceleration": {
+            "gasoline": 11.1,
+            "ethanol": 11.1
+          }
+        },
+        "tire": {
+          "front": "205/55 R16",
+          "rear": "205/55 R16"
+        },
+        "breakes": {
+          "front": "Disco ventilado",
+          "rear": "Disco Sólido"
+        },
+        "canonical_problems": "Problmeas com rompimento do eixo traseiro(verificar se foi feito o recall); Ruidos na suspenção dianteira; Ruidos no acabamentos das portas; Desgaste prematuro nas pastilhas de freio; Problmea na boia de combustível",
+        "questions": ""
+      },
+      {
+        "_id": {
+          "$oid": "64ee5254d80676022108c0aa"
+        },
+        "img_url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK0XdkkfSvXPEnDItiMaRkqMwO2PPSD7Y0Rg&usqp=CAU",
+        "brand": "Hyundai",
+        "model": "HB20",
+        "year": 2013,
+        "version": "1.0 Confort",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 11.5,
+            "ethanol": 7.6
+          },
+          "road": {
+            "gasoline": 14.5,
+            "ethanol": 9.8
+          }
+        },
+        "dimensions": {
+          "length": 3.9,
+          "width": 1.68,
+          "height": 1.47,
+          "distance": 2.5,
+          "trunk": 300,
+          "weight": 953,
+          "gas_tank": 50
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 75,
+            "ethanol": 80
+          },
+          "cylinders": 3,
+          "valves": 12,
+          "displacement": 998,
+          "engine_code": "Beta"
+        },
+        "transmission": {
+          "shift": "Manual",
+          "gear": 5
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 160,
+            "ethanol": ""
+          },
+          "acceleration": {
+            "gasoline": 14.9,
+            "ethanol": ""
+          }
+        },
+        "tire": {
+          "front": "175/70 R14",
+          "rear": "175/70 R14"
+        },
+        "breakes": {
+          "front": "Disco ventilado",
+          "rear": "Tambor"
+        },
+        "canonical_problems": "Problema nas bobinas dos cilindros; Embreagem tem desgaste prematuro; Queima da boia de combustível",
+        "questions": ""
+      },
+      {
+        "_id": {
+          "$oid": "6508add8c1c9a3ae97bbce17"
+        },
+        "img_url":"https://cdn.discordapp.com/attachments/638525255744225280/1153430234398457908/download_1.jpg",
+        "brand": "Chevrolet",
+        "model": "Agile",
+        "year": 2012,
+        "version": "LTZ",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 9.4,
+            "ethanol": 6.5
+          },
+          "road": {
+            "gasoline": 11.5,
+            "ethanol": 8
+          }
+        },
+        "dimensions": {
+          "length": 3.996,
+          "width": 1.683,
+          "height": 1.474,
+          "distance": 2.543,
+          "trunk": 327,
+          "weight": 1075,
+          "gas_tank": 54
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 97,
+            "ethanol": 102
+          },
+          "cylinders": 4,
+          "valves": 8,
+          "displacement": 1389,
+          "engine_code": "GM Família I"
+        },
+        "transmission": {
+          "shift": "Manual",
+          "gear": 5
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 166,
+            "ethanol": "N/D"
+          },
+          "acceleration": {
+            "gasoline": 12.5,
+            "ethanol": "N/D"
+          }
+        },
+        "tire": {
+          "front": "185/60 R15",
+          "rear": "185/60 R15"
+        },
+        "breakes": {
+          "front": "Disco ventilado",
+          "rear": "Tambor"
+        },
+        "canonical_problems": "Luz de injeção(Pode ser apenas uma sinalização de combustível ruim); Desgaste no cochinho do motor; Vazamento de agua no lado do passageiro; Problema no trambulador do cambio",
+        "questions": ""
+      },
+      {
+        "_id": {
+          "$oid": "6508ad2dc1c9a3ae97bbce16"
+        },
+        "img_url":"https://media.discordapp.net/attachments/638525255744225280/1153429941011087482/download.jpg",
+        "brand": "Audi",
+        "model": "A3",
+        "year": 2015,
+        "version": "Ambition",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 9.6,
+            "ethanol": "N/D"
+          },
+          "road": {
+            "gasoline": 14,
+            "ethanol": "N/D"
+          }
+        },
+        "dimensions": {
+          "length": 4.456,
+          "width": 1.796,
+          "height": 1.416,
+          "distance": 2.637,
+          "trunk": 425,
+          "weight": 1295,
+          "gas_tank": 50
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 180,
+            "ethanol": "N/D"
+          },
+          "cylinders": 4,
+          "valves": 16,
+          "displacement": 1798,
+          "engine_code": "EA888"
+        },
+        "transmission": {
+          "shift": "Automatizado",
+          "gear": 7
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 235,
+            "ethanol": "N/D"
+          },
+          "acceleration": {
+            "gasoline": 7.3,
+            "ethanol": "N/D"
+          }
+        },
+        "tire": {
+          "front": "225/45 R17",
+          "rear": "225/45 R17"
+        },
+        "breakes": {
+          "front": "Disco ventilado",
+          "rear": "Disco Sólido"
+        },
+        "canonical_problems": "Problema na mecatrônica do cambio automatizado; Problema na bomba d'gua, bobinas e bicos injetores",
+        "questions": ""
+      },
+      {
+        "_id": {
+          "$oid": "6508b4b7c1c9a3ae97bbce18"
+        },
+        "img_url":"https://cdn.discordapp.com/attachments/638525255744225280/1153433286480253029/download_7.jpg",
+        "brand": "Chevrolet",
+        "model": "Classic",
+        "year": 2011,
+        "version": "LS",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 10.4,
+            "ethanol": 7.4
+          },
+          "road": {
+            "gasoline": 13,
+            "ethanol": 9.2
+          }
+        },
+        "dimensions": {
+          "length": 4.152,
+          "width": 1.608,
+          "height": 1.436,
+          "distance": 2.443,
+          "trunk": 390,
+          "weight": 905,
+          "gas_tank": 54
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 77,
+            "ethanol": 78
+          },
+          "cylinders": 4,
+          "valves": 8,
+          "displacement": 999,
+          "engine_code": "GM Família I"
+        },
+        "transmission": {
+          "shift": "Manual",
+          "gear": 5
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 166,
+            "ethanol": "N/D"
+          },
+          "acceleration": {
+            "gasoline": 13.6,
+            "ethanol": "N/D"
+          }
+        },
+        "tire": {
+          "front": "165/70 R13",
+          "rear": "165/70 R13"
+        },
+        "breakes": {
+          "front": "Disco Sólido",
+          "rear": "Tambor"
+        },
+        "canonical_problems": "Vazamento dos amortecedores dianteiros; Vazamento de óleo no cambio; Infiltração de agua pelo bocal do tanque de combustível",
+        "questions": ""
+      },
+      
+      {
+        "_id": {
+          "$oid": "6508b51bc1c9a3ae97bbce19"
+        },
+        "img_url":"https://cdn.discordapp.com/attachments/638525255744225280/1153433042203971664/download_6.jpg",
+        "brand": "Chevrolet",
+        "model": "Onix",
+        "year": 2017,
+        "version": "LTZ",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 12.5,
+            "ethanol": 8.6
+          },
+          "road": {
+            "gasoline": 14.9,
+            "ethanol": 10.2
+          }
+        },
+        "dimensions": {
+          "length": 3.933,
+          "width": 1.705,
+          "height": 1.476,
+          "distance": 2.528,
+          "trunk": 280,
+          "weight": 1034,
+          "gas_tank": 54
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 98,
+            "ethanol": 106
+          },
+          "cylinders": 4,
+          "valves": 8,
+          "displacement": 1389,
+          "engine_code": "GM Família 1"
+        },
+        "transmission": {
+          "shift": "Manual",
+          "gear": 6
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 180,
+            "ethanol": "N/D"
+          },
+          "acceleration": {
+            "gasoline": 10.5,
+            "ethanol": "N/D"
+          }
+        },
+        "tire": {
+          "front": "185/65 R15",
+          "rear": "185/65 R15"
+        },
+        "breakes": {
+          "front": "Disco ventilado",
+          "rear": "Disco Sólido"
+        },
+        "canonical_problems": "N/D",
+        "questions": ""
+      },
+      
+      {
+        "_id": {
+          "$oid": "6508b547c1c9a3ae97bbce1a"
+        },
+        "img_url":"https://cdn.discordapp.com/attachments/638525255744225280/1153432809675960400/download_5.jpg",
+        "brand": "Chevrolet",
+        "model": "Sonic",
+        "year": 2013,
+        "version": "LTZ",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 9.1,
+            "ethanol": 7
+          },
+          "road": {
+            "gasoline": 11.9,
+            "ethanol": 9.2
+          }
+        },
+        "dimensions": {
+          "length": 4.399,
+          "width": 1.735,
+          "height": 1.517,
+          "distance": 2.525,
+          "trunk": 477,
+          "weight": 1178,
+          "gas_tank": 46
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 116,
+            "ethanol": 120
+          },
+          "cylinders": 4,
+          "valves": 8,
+          "displacement": 1598,
+          "engine_code": "Ecotec C16XE"
+        },
+        "transmission": {
+          "shift": "Manual",
+          "gear": 5
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 180,
+            "ethanol": "N/D"
+          },
+          "acceleration": {
+            "gasoline": 11.4,
+            "ethanol": "N/D"
+          }
+        },
+        "tire": {
+          "front": "205/55 R16",
+          "rear": "105/55 R16"
+        },
+        "breakes": {
+          "front": "Disco ventilado",
+          "rear": "Tambor"
+        },
+        "canonical_problems": "Problema na borracha do diafragma da tampa de válvulas; Problemas na suspensão; Defeito no vidro elétrico",
+        "questions": ""
+      },
+      
+      {
+        "_id": {
+          "$oid": "6508b55ac1c9a3ae97bbce1b"
+        },
+        "img_url":"https://cdn.discordapp.com/attachments/638525255744225280/1153432211882778654/download_4.jpg",
+        "brand": "Chevrolet",
+        "model": "Vectra",
+        "year": 2006,
+        "version": "Elegance",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 7.7,
+            "ethanol": 6.1
+          },
+          "road": {
+            "gasoline": 11.1,
+            "ethanol": 9.1
+          }
+        },
+        "dimensions": {
+          "length": 4.618,
+          "width": 1.728,
+          "height": 1.458,
+          "distance": 2.703,
+          "trunk": 526,
+          "weight": 1275,
+          "gas_tank": 58
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 121,
+            "ethanol": 127.6
+          },
+          "cylinders": 4,
+          "valves": 8,
+          "displacement": 1998,
+          "engine_code": "GM Família II"
+        },
+        "transmission": {
+          "shift": "Manual",
+          "gear": 5
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 198,
+            "ethanol": ""
+          },
+          "acceleration": {
+            "gasoline": 10,
+            "ethanol": ""
+          }
+        },
+        "tire": {
+          "front": "205/55 R16",
+          "rear": "205/55 R16"
+        },
+        "breakes": {
+          "front": "Disco ventilado",
+          "rear": "Tambor"
+        },
+        "canonical_problems": "Vazamento de óleo na tampa do cabeçote; Problema no contato da chave",
+        "questions": ""
+      },
+      
+      {
+        "_id": {
+          "$oid": "6508b57bc1c9a3ae97bbce1c"
+        },
+        "img_url":"https://cdn.discordapp.com/attachments/638525255744225280/1153431864636350504/download_3.jpg",
+        "brand": "Fiat",
+        "model": "Idea",
+        "year": 2014,
+        "version": "Essence",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 9.8,
+            "ethanol": 6.8
+          },
+          "road": {
+            "gasoline": 11.5,
+            "ethanol": 8
+          }
+        },
+        "dimensions": {
+          "length": 3.995,
+          "width": 1.698,
+          "height": 1.701,
+          "distance": 2.511,
+          "trunk": 380,
+          "weight": 1260,
+          "gas_tank": 48
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 115,
+            "ethanol": 117
+          },
+          "cylinders": 4,
+          "valves": 16,
+          "displacement": 1598,
+          "engine_code": "E.torQ"
+        },
+        "transmission": {
+          "shift": "Manual",
+          "gear": 5
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 179,
+            "ethanol": "N/D"
+          },
+          "acceleration": {
+            "gasoline": 10.7,
+            "ethanol": "N/D"
+          }
+        },
+        "tire": {
+          "front": "195/60 R15",
+          "rear": "195/60 R15"
+        },
+        "breakes": {
+          "front": "Disco ventilado",
+          "rear": "Tambor"
+        },
+        "canonical_problems": "Desgaste prematuro da bucha da bandeja e bieleta; Vazamento de óleo pelo carter",
+        "questions": ""
+      },
+      {
+        "_id": {
+          "$oid": "6508b58bc1c9a3ae97bbce1d"
+        },
+        "img_url":"https://cdn.discordapp.com/attachments/638525255744225280/1153431015646306374/download_2.jpg",
+        "brand": "Fiat",
+        "model": "Palio",
+        "year": 2014,
+        "version": "1.4 Attractive",
+        "price": "",
+        "consumption": {
+          "urban": {
+            "gasoline": 10.8,
+            "ethanol": 7.4
+          },
+          "road": {
+            "gasoline": 13.5,
+            "ethanol": 9.3
+          }
+        },
+        "dimensions": {
+          "length": 3.875,
+          "width": 1.67,
+          "height": 1.504,
+          "distance": 2.42,
+          "trunk": 290,
+          "weight": 1007,
+          "gas_tank": 48
+        },
+        "engine": {
+          "max_power": {
+            "gasoline": 85,
+            "ethanol": 88
+          },
+          "cylinders": 4,
+          "valves": 8,
+          "displacement": 1368,
+          "engine_code": "Fire"
+        },
+        "transmission": {
+          "shift": "Manual",
+          "gear": 5
+        },
+        "performance": {
+          "max_speed": {
+            "gasoline": 171,
+            "ethanol": 173
+          },
+          "acceleration": {
+            "gasoline": 112.2,
+            "ethanol": "N/D"
+          }
+        },
+        "tire": {
+          "front": "175/65 R14",
+          "rear": "175/65 R14"
+        },
+        "breakes": {
+          "front": "Disco ventilado",
+          "rear": "Tambor"
+        },
+        "canonical_problems": "Ruido de acabamento; Barulho na suspensão",
+        "questions": ""
+      }
+]

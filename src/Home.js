@@ -1,68 +1,87 @@
 import React, { useState, useEffect } from "react";
 import {
+  FlatList,
   Text,
   View,
   StyleSheet,
   TouchableOpacity,
   Alert,
   TextInput,
+  SafeAreaView,
+  Image,
 } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
-import { Button } from "react-native-web";
 
-const mockArray = [
-    {'Marca': 'Gol', 'id':1},
-    {'Marca': 'Gol', 'id':2},
-    {'Marca': 'Gol', 'id':3},
-    {'Marca': 'Gol', 'id':4},
-    {'Marca': 'Gol', 'id':5},
-    {'Marca': 'Gol', 'id':6},
-    {'Marca': 'Gol', 'id':7}
-]
+import mockArray from '../api.json'
 
 const Home = ({ navigation }) => {
 
     const [text, setText] = useState('');
     const [apiResponse, setApiResponse] = useState([]);
 
+    // useEffect(() => {
+    //     // Função para buscar dados da API com base no searchText
+    //     const fetchData = async () => {
+    //       try {
+    //         const response = await fetch(`http://localhost:5000/api/car/list?filter_data=${text}&filter_by=model`);
+    //         const data = await response.json();
+    //         setApiResponse(data);
+    //         console.log(apiResponse.data)
+    //       } catch (error) {
+    //         console.error('Erro ao buscar dados da API:', error);
+    //       }
+    //     };
+
+    //     if (text !== '') {
+    //         fetchData();
+    //       } else {
+    //         setApiResponse([]);
+    //       }
+    //     }, [text]);
+
+
     useEffect(() => {
-        // Função para buscar dados da API com base no searchText
-        const fetchData = async () => {
-          try {
-            const response = await fetch(`http://localhost:5000/api/car/list?filter_data=${text}&filter_by=model`);
-            const data = await response.json();
-            setApiResponse(data);
-            console.log(apiResponse.data)
-          } catch (error) {
-            console.error('Erro ao buscar dados da API:', error);
-          }
-        };
+      if(text != '') {
+        const resultados = mockArray.filter(item => {
+          return item.model.toLowerCase().startsWith(text.toLowerCase());
+        }); 
+        setApiResponse(resultados)
+      }
+      else{
+        setApiResponse(mockArray)
+      } 
+      
+      
+    }, [text])
 
-        if (text !== '') {
-            fetchData();
-          } else {
-            setApiResponse([]);
-          }
-        }, [text]);
+    const handleItemClick = (item) => {
+      navigation.navigate('Car', { carroSelecionado: item });
+    };
 
-        const renderItem = ({item}) => (
-            <View>
-              <Button>mostrar carro</Button>
-              <Text style = {styles.text}>{item.Marca}</Text>
-            </View>
-          );
-
+    const renderItem = ({item}) => (
+        <TouchableOpacity onPress={() => handleItemClick(item)}>
+          <View style = {styles.itemContainer}>
+            <Image style = {styles.imagem} source ={{uri:item.img_url}}/>
+            <Text style = {styles.text}>{item.brand} {item.model}</Text>
+          </View>
+        </TouchableOpacity>
+      );
+ 
     return (
-        <View>
-    
-            <TextInput style={styles.textInput} placeholder="Procurar carro" onChangeText = {newText => setText(newText)} />
-                
+        <SafeAreaView style={{flex: 1}}>
+          <View style={{flex: 1}}>        
+            <View style={{paddingHorizontal: 16}}>
+              <Text style={styles.BuscarText}>Buscar</Text>
+              <View>
+                <TextInput style={styles.textInput} placeholder="Qual carro deseja procurar?" onChangeText = {newText => setText(newText)} />
+              </View>
+            </View>
             <FlatList
-                data={mockArray}
+                data={apiResponse}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
             />
-        </View>
+            </View>
+        </SafeAreaView>
   );
 }
 
@@ -70,12 +89,34 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     paddingTop: 20,
+    paddingHorizontal: 8,
   },
 
   searchBar: {
     flex:1,
     alignItems:"center",
   },
+
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+  },
+
+  BuscarText:{
+    fontWeight: 'bold',
+    fontSize: 20,
+
+  },
+
+  imagem: {
+    width: 64,
+    height: 64,
+    marginRight: 10,
+    borderRadius: 32,
+    objectFit: "cover",
+    backgroundColor: "white"
+  },  
 
   title:{
     marginTop: 100,
@@ -86,7 +127,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: "#004aad",
+    color: "black",
     fontSize: 20,
     fontWeight: "bold",
     margin:10,
@@ -95,7 +136,7 @@ const styles = StyleSheet.create({
   textInput: {
     borderWidth: 2,
     padding: 10,
-    borderRadius: 25,
+    borderRadius: 5,
     marginTop: 10,
     borderColor:"black"
   },

@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import Login from './src/Login';
 import Cadastro from './src/Cadastro';
 import Home from './src/Home';
+import Car from './src/Car'
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,11 @@ function App() {
           name = 'Home'
           component={Home}
         /> 
+
+        <Stack.Screen
+        name="Car"
+        component={Car}
+        />
 
       </Stack.Navigator>
     </NavigationContainer>

@@ -15,8 +15,6 @@ const Car = ({ navigation, route }) => {
 
   const { carroSelecionado } = route.params;
   const problems = carroSelecionado.canonical_problems.split('; ')
-  console.log(problems)
-
 
   return (
     <SafeAreaView>

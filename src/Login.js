@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   Text,
@@ -10,48 +10,52 @@ import {
   TextInput,
   ImageBackground
 } from "react-native";
+import { useAuth } from "./contexts/AuthContext";
 
-const image = { uri: 'https://cdn.discordapp.com/attachments/638525255744225280/1153450485525786734/pexels-yurii-hlei-1545743.jpg'}
-const logo  = require('../assets/logo.png')
+const image = { uri: 'https://cdn.discordapp.com/attachments/638525255744225280/1153450485525786734/pexels-yurii-hlei-1545743.jpg' }
+const logo = require('../assets/logo.png')
 
 const Login = ({ navigation }) => {
+
+  const [loginText, setLoginTxt] = useState('')
+  const [passText, setPassTxt] = useState('')
+  const { handleLogin } = useAuth();
+
+
   return (
     <ImageBackground source={image} style={styles.image} blurRadius={8}>
-      <SafeAreaView style = {styles.tela}>
-        <View style = {styles.container}>
-          
-            <View style = {{flexDirection:'row', alignItems:'center', justifyContent:'center', gap:15}}>
-              <Text style = {styles.title}>
-                EyeCar
-              </Text>
-              <Image style = {styles.logo} source = {logo}/>
-            </View>
+      <SafeAreaView style={styles.tela}>
+        <View style={styles.container}>
 
-            <Text style = {styles.text}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 15 }}>
+            <Text style={styles.title}>
+              EyeCar
+            </Text>
+            <Image style={styles.logo} source={logo} />
+          </View>
+
+          <Text style={styles.text}>
+            Login
+          </Text>
+          <TextInput placeholderTextColor="#000" style={styles.textInput} placeholder="Usuário" clearButtonMode="always" onChangeText={text => setLoginTxt(text)} />
+          <TextInput placeholderTextColor="#000" style={styles.textInput} placeholder="Senha" secureTextEntry clearButtonMode="always" onChangeText={text => setPassTxt(text)} />
+
+          <Text style={styles.forget}>
+            Forget Password
+          </Text>
+
+          <TouchableOpacity style={styles.btnLogin} onPress={() => handleLogin(loginText, passText)}>
+            <Text style={styles.textButton}>
               Login
             </Text>
-            <TextInput placeholderTextColor="#000"  style={styles.textInput} placeholder= "Usuário" clearButtonMode="always"/>
-            <TextInput placeholderTextColor="#000"  style={styles.textInput} placeholder= "Senha" secureTextEntry clearButtonMode="always"/>
-          
-            <Text style = {styles.forget}>
-              Forget Password
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('Cadastro')}>
+            <Text style={styles.textButton}>
+              Cadastre-se
             </Text>
-
-            <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('Home')}>
-              <Text style={styles.textButton}>
-                Login
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('Cadastro')}>
-              <Text style={styles.textButton}>
-                Cadastre-se 
-              </Text>
-            </TouchableOpacity>
-
-          
-          
-      </View>
+          </TouchableOpacity>
+        </View>
 
       </SafeAreaView>
     </ImageBackground>
@@ -59,14 +63,14 @@ const Login = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    paddingTop: 20, 
+  container: {
+    paddingTop: 20,
     paddingHorizontal: 16,
   },
 
   logo: {
-    width:110,
-    height:40,
+    width: 110,
+    height: 40,
   },
 
   title: {
@@ -74,10 +78,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     fontSize: 40,
-    
-  },  
 
-  text:{
+  },
+
+  text: {
     marginTop: 100,
     fontSize: 20,
     fontWeight: "bold",
@@ -90,14 +94,14 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
-    
+
   },
 
   textInput: {
     padding: 16,
     borderRadius: 8,
     marginTop: 10,
-    color:'black',
+    color: 'black',
     backgroundColor: 'white',
     borderBottomWidth: 3,
     borderBottomColor: "#004aad"

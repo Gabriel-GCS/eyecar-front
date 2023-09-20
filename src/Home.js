@@ -12,18 +12,25 @@ import {
 } from "react-native";
 
 import mockArray from '../api.json'
+import axios from "axios";
+import { useAuth } from "./contexts/AuthContext";
 
 const Home = ({ navigation }) => {
 
     const [text, setText] = useState('');
     const [apiResponse, setApiResponse] = useState([]);
+    const { user } = useAuth();
 
     // useEffect(() => {
     //     // Função para buscar dados da API com base no searchText
     //     const fetchData = async () => {
     //       try {
-    //         const response = await fetch(`http://localhost:5000/api/car/list?filter_data=${text}&filter_by=model`);
-    //         const data = await response.json();
+    //         const {data} = await axios(`http://192.168.0.119:5000/api/car/list?filter_data=${text}&filter_by=model`, {
+    //           headers:{
+    //             Authorization: `Bearer ${user.token}`
+    //           }
+    //         });
+            
     //         setApiResponse(data);
     //         console.log(apiResponse.data)
     //       } catch (error) {
@@ -31,11 +38,8 @@ const Home = ({ navigation }) => {
     //       }
     //     };
 
-    //     if (text !== '') {
-    //         fetchData();
-    //       } else {
-    //         setApiResponse([]);
-    //       }
+       
+    //     fetchData()
     //     }, [text]);
 
 

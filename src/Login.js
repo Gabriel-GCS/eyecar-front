@@ -37,7 +37,7 @@ const Login = ({ navigation }) => {
           <Text style={styles.text}>
             Login
           </Text>
-          <TextInput placeholderTextColor="#000" style={styles.textInput} placeholder="Usuário" clearButtonMode="always" onChangeText={text => setLoginTxt(text)} />
+          <TextInput placeholderTextColor="#000" style={styles.textInput} placeholder="E-mail" clearButtonMode="always" onChangeText={text => setLoginTxt(text)} />
           <TextInput placeholderTextColor="#000" style={styles.textInput} placeholder="Senha" secureTextEntry clearButtonMode="always" onChangeText={text => setPassTxt(text)} />
 
           <Text style={styles.forget}>

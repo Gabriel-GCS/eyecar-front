@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   SafeAreaView,
   Text,
@@ -12,14 +12,14 @@ import {
 } from "react-native";
 
 const Car = ({ navigation, route }) => {
-
   const { carroSelecionado } = route.params;
+  console.log(carroSelecionado)
   const problems = carroSelecionado.canonical_problems.split('; ')
 
   return (
     <SafeAreaView>
       <ScrollView style={styles.container}>
-        <Image style={styles.image} source={{ uri: carroSelecionado.img_url }} />
+        {/* <Image style={styles.image} source={{ uri: carroSelecionado.photos[0] }} /> */}
         <Text style={styles.title}>
           {carroSelecionado.brand} - {' '}
           {carroSelecionado.model}
@@ -56,7 +56,7 @@ const Car = ({ navigation, route }) => {
         <Text>
           {carroSelecionado.version}
         </Text>
-        
+
         <Text style={styles.label} >
           Performance
         </Text>
@@ -70,18 +70,15 @@ const Car = ({ navigation, route }) => {
         <Text>
           {problems.map(item => (
             <View>
-              <Text style = {{paddingTop:5}}>
+              <Text style={{ paddingTop: 5 }}>
                 {item}
               </Text>
-            </View> 
+            </View>
           ))}
         </Text>
 
-
-               
-        
         <Text style={styles.subtitle}>
-         Consumo:
+          Consumo:
         </Text>
         <Text style={styles.label} >
           Gasolina
@@ -97,7 +94,7 @@ const Car = ({ navigation, route }) => {
         </Text>
 
         <Text style={styles.subtitle}>
-         Medidas:
+          Medidas:
         </Text>
         <Text style={styles.label} >
           Comprimento:
@@ -109,31 +106,31 @@ const Car = ({ navigation, route }) => {
           Largura:
         </Text>
         <Text>
-        {carroSelecionado.dimensions.width} Metros
+          {carroSelecionado.dimensions.width} Metros
         </Text>
         <Text style={styles.label} >
           Altura:
         </Text>
         <Text>
-        {carroSelecionado.dimensions.height} Metros
+          {carroSelecionado.dimensions.height} Metros
         </Text>
         <Text style={styles.label} >
           Porta malas:
         </Text>
         <Text>
-        {carroSelecionado.dimensions.trunk} Litros
+          {carroSelecionado.dimensions.trunk} Litros
         </Text>
         <Text style={styles.label} >
           Peso:
         </Text>
         <Text>
-        {carroSelecionado.dimensions.weight} Quilos
+          {carroSelecionado.dimensions.weight} Quilos
         </Text>
         <Text style={styles.label} >
           Tanque:
         </Text>
         <Text>
-        {carroSelecionado.dimensions.gas_tank} Litros
+          {carroSelecionado.dimensions.gas_tank} Litros
         </Text>
 
       </ScrollView>
@@ -150,10 +147,10 @@ const styles = StyleSheet.create({
 
   image: {
     alignSelf: "center",
-    height: 150, 
+    height: 150,
     width: 150,
     objectFit: "contain",
-    borderRadius: 100, 
+    borderRadius: 100,
     backgroundColor: "white",
     borderWidth: 8,
     borderColor: "darkblue",
@@ -168,7 +165,7 @@ const styles = StyleSheet.create({
   },
 
   subtitle: {
-    fontSize: 24, 
+    fontSize: 24,
     fontWeight: "bold",
     marginBottom: 24,
     marginTop: 32,
@@ -177,8 +174,8 @@ const styles = StyleSheet.create({
 
   label: {
     fontSize: 20,
-    color:'black',
+    color: 'black',
     fontWeight: "bold",
-    paddingTop:10,
+    paddingTop: 10,
   }
 })

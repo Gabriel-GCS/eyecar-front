@@ -11,16 +11,34 @@ import {
   ImageBackground
 } from "react-native";
 import { useAuth } from "./contexts/AuthContext";
+import { useTheme } from "@react-navigation/native";
 
-const image = { uri: 'https://cdn.discordapp.com/attachments/638525255744225280/1153450485525786734/pexels-yurii-hlei-1545743.jpg' }
-const logo = require('../assets/logo.png')
+const image = { uri: 'https://cdn.discordapp.com/attachments/638525255744225280/1153450485525786734/pexels-yurii-hlei-1545743.jpg' };
+const logo = require('../assets/logo.png');
 
 const Login = ({ navigation }) => {
 
-  const [loginText, setLoginTxt] = useState('')
-  const [passText, setPassTxt] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [seePassword, setSeePassword] = useState(true);
+  const [checkValidEmail, setCheckValidEmail] = useState(false);
+
   const { handleLogin } = useAuth();
 
+
+  const handleCheckEmail = (email) => {
+    let re = /\S+@\S+\.\S+/;
+    let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+    
+    setEmail(email)
+    if (re.test(email) || regex.test(email)) {
+      setCheckValidEmail(false);
+    }
+    else {
+      setCheckValidEmail(true);
+    }
+  }
 
   return (
     <ImageBackground source={image} style={styles.image} blurRadius={8}>
@@ -37,14 +55,20 @@ const Login = ({ navigation }) => {
           <Text style={styles.text}>
             Login
           </Text>
-          <TextInput placeholderTextColor="#000" style={styles.textInput} placeholder="E-mail" clearButtonMode="always" onChangeText={text => setLoginTxt(text)} />
-          <TextInput placeholderTextColor="#000" style={styles.textInput} placeholder="Senha" secureTextEntry clearButtonMode="always" onChangeText={text => setPassTxt(text)} />
+          <TextInput placeholderTextColor="#000" style={styles.textInput} placeholder="E-mail" clearButtonMode="always" 
+          onChangeText={(text) => handleCheckEmail(text)} />
+
+          {checkValidEmail ? <Text style = {styles.wrongTextFormat}>Wrong format email</Text> : 
+          <Text></Text>}
+
+          <TextInput placeholderTextColor="#000" style={styles.textInput} placeholder="Senha" secureTextEntry={seePassword}
+           clearButtonMode="always" onChangeText={text => setPassword(text)} />
 
           <Text style={styles.forget}>
             Forget Password
           </Text>
 
-          <TouchableOpacity style={styles.btnLogin} onPress={() => handleLogin(loginText, passText)}>
+          <TouchableOpacity style={styles.btnLogin} onPress={() => handleLogin(email, password)}>
             <Text style={styles.textButton}>
               Login
             </Text>
@@ -71,6 +95,11 @@ const styles = StyleSheet.create({
   logo: {
     width: 110,
     height: 40,
+  },
+
+  wrongTextFormat: {
+    alignSelf: 'flex-end',
+    color: 'red',
   },
 
   title: {
@@ -114,8 +143,12 @@ const styles = StyleSheet.create({
   forget: {
     textAlign: "center",
     color: "white",
-    marginTop: 10,
-    marginBottom: 64,
+    marginTop: 8,
+    marginBottom: 56,
+    borderWidth: 0,
+    borderColor: "white",
+    width: "40%",
+    alignSelf: "center"
   },
 
   btnLogin: {

@@ -11,11 +11,17 @@ export function AuthProvider(props) {
     const navigation = useNavigation();
 
     async function handleLogin(loginText, passText) {
-        const { data } = await axios.post('http://192.168.0.43:5000/api/auth/login', {
-            email: loginText, password: passText
-        })
+        try {
+            const { data } = await axios.post('http://192.168.0.106:5000/api/auth/login', {
+                email: loginText, password: passText
+            })
 
-        setUser({ id: data.data.id, name: data.data.name, email: data.data.email, token: data.data.token });
+            setUser({ id: data.data.id, name: data.data.name, email: data.data.email, token: data.data.token });
+        }
+        catch(e){
+            alert("Senha ou email incorretos.")
+        }
+            
     }
 
     async function handleCreateUser(name, email, password) {
@@ -26,7 +32,7 @@ export function AuthProvider(props) {
         formData.append('password', password)
 
         try {
-            await axios.post('http://192.168.0.43:5000/api/user/', formData, {
+            await axios.post('http://192.168.0.106:5000/api/user/', formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -36,7 +42,6 @@ export function AuthProvider(props) {
         } catch (e) {
             console.log(e.message)
         }
-
     }
 
     return (

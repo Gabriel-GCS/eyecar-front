@@ -9,11 +9,14 @@ import {
   TextInput,
   SafeAreaView,
   Image,
+  Modal,
+  TouchableWithoutFeedback
 } from "react-native";
 
 import mockArray from '../api.json'
 import axios from "axios";
 import { useAuth } from "./contexts/AuthContext";
+import ImagePopup from "../components/ImagePopup";
 
 const Home = ({ navigation }) => {
 
@@ -23,6 +26,24 @@ const Home = ({ navigation }) => {
   const [apiResponse, setApiResponse] = useState([]);
   const [filter, setFilter] = useState('model');
 
+  const [imageModal, setImageModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
+
+  const openImageModal = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    setImageModal(true);
+  };
+
+  const closeImageModal = () => {
+    setModalVisible(false);
+  };
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const options = [
+    { id: '1', label: 'Selecionar por marca' },
+    { id: '2', label: 'Selecionar por modelo' },
+  ];
+
   const { user } = useAuth();
 
 
@@ -30,7 +51,7 @@ const Home = ({ navigation }) => {
     // Função para buscar dados da API com base no searchText
     const fetchData = async () => {
       try {
-        const { data } = await axios(`http://192.168.0.43:5000/api/car/list?filter_data=${text}&filter_by=${filter}&order_by=${order_by}&order_type=${order_type}`);
+        const { data } = await axios(`http://192.168.0.106:5000/api/car/list?filter_data=${text}&filter_by=${filter}&order_by=${order_by}&order_type=${order_type}`);
         setApiResponse(data.data);
 
       } catch (error) {
@@ -38,12 +59,12 @@ const Home = ({ navigation }) => {
       }
     };
     fetchData()
-  }, [text]);
+  }, [text, filter]);
 
 
   const handleItemClick = async (item) => {
     try {
-      const { data } = await axios(`http://192.168.0.43:5000/api/car/id?car_id=${item._id}`, {
+      const { data } = await axios(`http://192.168.0.106:5000/api/car/id?car_id=${item._id}`, {
         headers: {
           Authorization: `Bearer ${user.token}`
         }
@@ -57,38 +78,132 @@ const Home = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => handleItemClick(item)}>
-      <View style={styles.itemContainer}>
-        {item.photos && item.photos.length > 0 ? (
-          <Image style={styles.imagem} source={{ uri: item.photos[0] }} />
-        ) : (
-          <Text>No Image Available</Text>
-        )}
+    <View style={styles.itemContainer}>
+      {item.photos && item.photos.length > 0 ? (
+        <View>
+          <TouchableOpacity onPress={() => openImageModal(item.photos[0])} >
+            <Image style={styles.imagem} source={{ uri: item.photos[0] }} />
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <Text>No Image Available</Text>
+      )}
+      <TouchableOpacity onPress={() => handleItemClick(item)}>
         <Text style={styles.text}>{item.brand} {item.model}</Text>
-      </View>
+      </TouchableOpacity>
+    </View>
+
+  );
+
+  const renderModalItem = ({ item }) => (
+    <TouchableOpacity
+      onPress={() => {
+        if (item.label == 'Selecionar por modelo') {
+          setFilter('model')
+        }
+        if (item.label == 'Selecionar por marca') {
+          setFilter('brand')
+        }
+        setModalVisible(false)
+        console.log(filter)
+      }}
+      style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: 'lightgray' }}
+    >
+      
+      <Text>{item.label}</Text>
     </TouchableOpacity>
   );
 
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1 }} id="screen">
-        <View style={styles.topPage} id="buscar-e-searchBar">
-          <Text style={styles.BuscarText}>Buscar</Text>
-          <View style={styles.searchBar}>
-            <TextInput style={styles.textInput} placeholder="Qual carro deseja procurar?" onChangeText={newText => setText(newText)} />
-            <TextInput style={styles.textInput} placeholder="filtro" onChangeText={newText => setFilter(newText)} />
-            <TextInput style={styles.textInput} placeholder="order_by" onChangeText={newText => setOrder_by(newText)} />
-            <TextInput style={styles.textInput} placeholder="order_type" onChangeText={newText => setOrder_type(newText)} />
-          </View>
+
+    <SafeAreaView style={{ backgroundColor: "lightgray", flex: 1 }}>
+      <View>
+        <Text style={styles.BuscarText}>Buscar</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <TextInput
+            onChangeText={(text) => setText(text)}
+            style={{
+              borderWidth: 1,
+              backgroundColor: "white",
+              borderColor: 'black',
+              borderRadius: 5,
+              padding: 10,
+              flex: 1,
+              marginLeft: 8,
+            }}
+            placeholder="Qual carro deseja buscar"
+          />
+          <TouchableOpacity
+            onPress={() => setModalVisible(true)}
+            style={{
+              marginLeft: 8,
+              marginRight: 12,
+              backgroundColor: "white",
+              borderRadius: 5,
+              padding: 3,
+              borderColor: "black",
+              borderWidth: 1,
+            }
+            }
+          >
+            <Image
+              source={require('../assets/filter.png')} // Substitua pelo caminho da sua imagem
+              style={{ width: 30, height: 30 }}
+            />
+          </TouchableOpacity>
         </View>
+
+        <Modal
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(false);
+          }}
+        >
+          <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'rgba(0,0,0,0.5)',
+              }}
+            >
+              <TouchableWithoutFeedback>
+                <View
+                  style={{
+                    backgroundColor: 'white',
+                    padding: 20,
+                    borderRadius: 10,
+                    maxHeight: 200,
+                    width: '80%',
+                  }}
+                >
+                  <FlatList
+                    data={options}
+                    renderItem={renderModalItem}
+                    keyExtractor={(item) => item.id}
+                  />
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+          </TouchableWithoutFeedback>
+        </Modal>
+
         <FlatList
           data={apiResponse}
           renderItem={renderItem}
           keyExtractor={(item, index) => index.toString()}
         />
+        <ImagePopup
+          imageUrl={selectedImage}
+          visible={imageModal}
+          onClose={closeImageModal}
+        />
       </View>
     </SafeAreaView>
+
   );
 }
 
@@ -97,16 +212,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     paddingHorizontal: 8,
-  },
-
-  searchBar: {
-    height: '12%',
-    flexDirection: "row",
-    gap: 3
-  },
-
-  topPage: {
-    paddingLeft: 16,
   },
 
   itemContainer: {
@@ -118,7 +223,9 @@ const styles = StyleSheet.create({
   BuscarText: {
     fontWeight: 'bold',
     fontSize: 20,
-
+    marginTop: 16,
+    marginLeft: 8,
+    marginBottom: 12,
   },
 
   imagem: {
@@ -126,7 +233,7 @@ const styles = StyleSheet.create({
     height: 64,
     marginRight: 10,
     borderRadius: 32,
-    objectFit: "cover",
+    objectFit: "contain",
     backgroundColor: "white"
   },
 
@@ -147,11 +254,11 @@ const styles = StyleSheet.create({
 
   textInput: {
     borderWidth: 2,
-    padding: 10,
+    padding: 15,
     borderRadius: 5,
     marginTop: 10,
     borderColor: "black",
-    width: '20%',
+    width: '80%',
   },
 
   btnSearch: {

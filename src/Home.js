@@ -16,7 +16,7 @@ import {
 import mockArray from '../api.json'
 import axios from "axios";
 import { useAuth } from "./contexts/AuthContext";
-import ImagePopup from "../components/ImagePopup";
+import { FontAwesome } from '@expo/vector-icons';
 
 const Home = ({ navigation }) => {
 
@@ -35,7 +35,7 @@ const Home = ({ navigation }) => {
   };
 
   const closeImageModal = () => {
-    setModalVisible(false);
+    setImageModal(false);
   };
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -81,18 +81,17 @@ const Home = ({ navigation }) => {
     <View style={styles.itemContainer}>
       {item.photos && item.photos.length > 0 ? (
         <View>
-          <TouchableOpacity onPress={() => openImageModal(item.photos[0])} >
+          <TouchableOpacity onPress={() => openImageModal(item.photos[0])}>
             <Image style={styles.imagem} source={{ uri: item.photos[0] }} />
           </TouchableOpacity>
         </View>
       ) : (
-        <Text>No Image Available</Text>
+        <Text>No Image Available</Text> // Correção aqui
       )}
       <TouchableOpacity onPress={() => handleItemClick(item)}>
         <Text style={styles.text}>{item.brand} {item.model}</Text>
       </TouchableOpacity>
     </View>
-
   );
 
   const renderModalItem = ({ item }) => (
@@ -109,7 +108,7 @@ const Home = ({ navigation }) => {
       }}
       style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: 'lightgray' }}
     >
-      
+
       <Text>{item.label}</Text>
     </TouchableOpacity>
   );
@@ -191,15 +190,30 @@ const Home = ({ navigation }) => {
           </TouchableWithoutFeedback>
         </Modal>
 
+        <Modal
+          transparent={true}
+          visible={imageModal}
+          onRequestClose={() => {
+            closeImageModal();
+          }}
+        >
+          <TouchableWithoutFeedback onPress={() => closeImageModal()}>
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContent}>
+                <Image
+                  style={styles.modalImage}
+                  source={{ uri: selectedImage }}
+                />
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </Modal>
+
+
         <FlatList
           data={apiResponse}
           renderItem={renderItem}
           keyExtractor={(item, index) => index.toString()}
-        />
-        <ImagePopup
-          imageUrl={selectedImage}
-          visible={imageModal}
-          onClose={closeImageModal}
         />
       </View>
     </SafeAreaView>
@@ -235,6 +249,32 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     objectFit: "contain",
     backgroundColor: "white"
+  },
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    width: '90%',
+    aspectRatio: 1,
+    borderRadius: 170,
+    position: 'relative', // Usar position absolute
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    zIndex: 1,
+  },
+  modalImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
+    borderRadius: 170,
   },
 
   title: {

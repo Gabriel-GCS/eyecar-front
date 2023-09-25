@@ -2,17 +2,16 @@ import { createContext, useContext, useState } from "react";
 import axios from "axios"
 import { useNavigation } from "@react-navigation/native";
 
-
 const AuthContext = createContext({})
 
-
 export function AuthProvider(props) {
-    const [user, setUser] = useState();
+    const API_URL = "http://192.168.0.104:5000" 
+    const [user, setUser] = useState(null);
     const navigation = useNavigation();
 
     async function handleLogin(loginText, passText) {
         try {
-            const { data } = await axios.post('http://192.168.1.106:5000/api/auth/login', {
+            const { data } = await axios.post(`${API_URL}/api/auth/login`, {
                 email: loginText, password: passText
             })
 
@@ -24,6 +23,12 @@ export function AuthProvider(props) {
             
     }
 
+    const logout = () => {
+        if (user) {
+            setUser(null); // Remove as informações do usuário ao fazer logout
+          }
+      };
+
     async function handleCreateUser(name, email, password) {
         const formData = new FormData()
 
@@ -32,7 +37,7 @@ export function AuthProvider(props) {
         formData.append('password', password)
 
         try {
-            await axios.post('http://192.168.1.106:5000/api/user/', formData, {
+            await axios.post(`${API_URL}/api/user/`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -49,6 +54,7 @@ export function AuthProvider(props) {
             handleLogin,
             handleCreateUser,
             user,
+            logout
         }}>
             {props.children}
         </AuthContext.Provider>

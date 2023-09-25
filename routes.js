@@ -1,13 +1,14 @@
-import { Header, createStackNavigator } from '@react-navigation/stack';
-
-import Login from './src/Login';
-import Cadastro from './src/Cadastro';
-import Home from './src/Home';
-import Car from './src/Car';
+import React from "react";
+import { createStackNavigator } from '@react-navigation/stack';
 import { useAuth } from './src/contexts/AuthContext';
+import UserProfile from './src/UserProfile';
+import Login from './src/Login'; // Certifique-se de que a tela de login está importada corretamente
+import Cadastro from './src/Cadastro';
+import Search from './src/Search';
+import Car from './src/Car';
+import Home from "./src/Home";
 
 const Stack = createStackNavigator();
-
 
 export function Routes() {
     const { user } = useAuth()
@@ -16,6 +17,16 @@ export function Routes() {
         <Stack.Navigator initialRouteName='FirstPage' screenOptions={{ headerShown: false }}>
             {user ? (
                 <>
+                    <Stack.Screen
+                        name="Search"
+                        component={Search}
+                    />
+
+                    <Stack.Screen
+                        name="Profile"
+                        component={UserProfile}
+                    />
+
                     <Stack.Screen
                         name="Home"
                         component={Home}

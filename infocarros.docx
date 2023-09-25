@@ -1,0 +1,28 @@
+<Text style={styles.label} >
+              Problemas canônicos
+            </Text>
+            <Text style={styles.infoTextBlack}>
+              {problems.map(item => (
+                <View>
+                  <Text style={{ paddingTop: 5 }}>
+                    {item}
+                  </Text>
+                </View>
+              ))}
+            </Text>
+
+            <Text style={styles.subtitle}>
+              Consumo:
+            </Text>
+            <Text style={styles.label} >
+              Gasolina
+            </Text>
+            <Text style={styles.infoTextBlack}>
+              Estrada: {carroSelecionado.consumption.road.gasoline}l | Urbano: {carroSelecionado.consumption.urban.gasoline}l
+            </Text>
+            <Text style={styles.label} >
+              Ethanol
+            </Text>
+            <Text style={styles.infoTextBlack}>
+              Estrada: {carroSelecionado.consumption.road.ethanol}l | Urbano: {carroSelecionado.consumption.urban.ethanol}l
+            </Text>

@@ -15,19 +15,35 @@ import { useAuth } from "./contexts/AuthContext";
 const image = { uri: 'https://cdn.discordapp.com/attachments/638525255744225280/1153450485525786734/pexels-yurii-hlei-1545743.jpg' }
 const logo = require('../assets/logo.png')
 
-
 const Cadastro = ({ navigation }) => {
-  const [nameTxt, setNameTxt] = useState("")
-  const [emailTxt, setEmailTxt] = useState("")
-  const [passTxt, setPassTxt] = useState("")
-  const [confirmPassTxt, setConfirmPassTxt] = useState("")
-  const { handleCreateUser } = useAuth()
+  const [nameTxt, setNameTxt] = useState("");
+  const [emailTxt, setEmailTxt] = useState("");
+  const [passTxt, setPassTxt] = useState("");
+  const [confirmPassTxt, setConfirmPassTxt] = useState("");
+  const { handleCreateUser } = useAuth();
+  const [checkValidEmail, setCheckValidEmail] = useState(false);
 
-  function createUser(){
-    if(passTxt.trim() !== confirmPassTxt.trim()) return
+  const handleCheckEmail = (email) => {
+    let re = /\S+@\S+\.\S+/;
+    let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 
-    handleCreateUser(nameTxt, emailTxt, passTxt)
-  } 
+    setEmailTxt(email);
+    if (re.test(email) || regex.test(email)) {
+      setCheckValidEmail(false);
+    } else {
+      setCheckValidEmail(true);
+    }
+  };
+
+  const createUser = () => {
+    if (passTxt.trim() !== confirmPassTxt.trim()) {
+      // Senhas não coincidem, exibir alerta
+      Alert.alert("Erro", "As senhas não coincidem.", [{ text: "OK" }]);
+      return;
+    }
+    // Senhas coincidem, continuar com a criação do usuário
+    handleCreateUser(nameTxt, emailTxt, passTxt);
+  };
 
   return (
     <ImageBackground source={image} style={styles.image} blurRadius={8}>
@@ -45,14 +61,20 @@ const Cadastro = ({ navigation }) => {
           </Text>
 
           <TextInput style={styles.textInput} placeholder="Nome" onChangeText={text => setNameTxt(text)} />
-          <TextInput style={styles.textInput} placeholder="E-mail" onChangeText={text => setEmailTxt(text)} />
+          <TextInput style={styles.textInput} placeholder="E-mail" clearButtonMode="always"
+            onChangeText={(text) => handleCheckEmail(text)} />
+          {checkValidEmail ? <Text style={styles.wrongTextFormat}>Wrong format email</Text> :
+            <Text></Text>}
           <TextInput style={styles.textInput} placeholder="Senha" secureTextEntry onChangeText={text => setPassTxt(text)} />
           <TextInput style={styles.textInput} placeholder="Confirma sua senha" secureTextEntry onChangeText={text => setConfirmPassTxt(text)} />
-
-          <TouchableOpacity style={styles.touch} onPress={() => navigation.navigate('Login')}>
-            <Text onPress={createUser} style={styles.btnLogin}>
+          <TouchableOpacity style={styles.touch} onPress={createUser}>
+            <Text style={styles.btnLogin}>
               Registrar-se
             </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.goBackText}>Voltar para o Login</Text>
           </TouchableOpacity>
 
         </View>
@@ -71,7 +93,6 @@ const styles = StyleSheet.create({
     width: 110,
     height: 40,
   },
-
 
   title: {
     textAlign: 'center',
@@ -114,6 +135,14 @@ const styles = StyleSheet.create({
     padding: 15,
     marginTop: 10,
   },
+
+  goBackText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    marginTop: 20,
+    textDecorationLine: 'underline',
+  }
 });
 
 export default Cadastro;

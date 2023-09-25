@@ -23,7 +23,7 @@ const Home = ({ navigation }) => {
   const [order_by, setOrder_by] = useState('price');
   const [order_type, setOrder_type] = useState(-1);
   const [apiResponse, setApiResponse] = useState([]);
-  const [filter, setFilter] = useState('model');
+  const [filter, setFilter] = useState('name');
   const [selectedOption, setSelectedOption] = useState(null);
   const [imageModal, setImageModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
@@ -32,22 +32,70 @@ const Home = ({ navigation }) => {
     { id: '1', label: 'Selecionar por marca' },
     { id: '2', label: 'Selecionar por modelo' },
   ];
+  const [sortModalVisible, setSortModalVisible] = useState(false);
+  const [selectedSortOption, setSelectedSortOption] = useState(null);
 
   const { user } = useAuth();
+
+  const handleSortOptionSelect = (option) => {
+    setSelectedSortOption(option);
+    setSortModalVisible(false);
+    // Atualize os estados order_by e order_type com base na opção selecionada
+    switch (option) {
+      case 'price-up':
+        setOrder_by('price');
+        setOrder_type(-1);
+        break;
+      case 'price-down':
+        setOrder_by('price');
+        setOrder_type(1);
+        break;
+      case 'year-up':
+        setOrder_by('year');
+        setOrder_type(-1);
+        break;
+      case 'year-down':
+        setOrder_by('year');
+        setOrder_type(1);
+        break;
+      case 'brand-up':
+        setOrder_by('brand');
+        setOrder_type(-1);
+        break;
+      case 'brand-down':
+        setOrder_by('brand');
+        setOrder_type(1);
+        break;
+      case 'model-up':
+        setOrder_by('model');
+        setOrder_type(-1);
+        break;
+      case 'model-down':
+        setOrder_by('model');
+        setOrder_type(1);
+        break;
+      default:
+        // Se nenhuma opção corresponder, redefina order_by e order_type
+        setOrder_by('price');
+        setOrder_type(-1);
+    }
+  };
 
   useEffect(() => {
     // Função para buscar dados da API com base no searchText
     const fetchData = async () => {
       try {
-        const { data } = await axios(`http://192.168.1.106:5000/api/car/list?filter_data=${text}&filter_by=${filter}&order_by=${order_by}&order_type=${order_type}`);
+        const { data } = await axios(`http://192.168.1.106:5000/api/car/list?filter_data=${text}&filter_by=${filter}&order_by=${order_by}&order_type=${order_type}&limit=50`);
         setApiResponse(data.data);
+        console.log('zzzzz')
+        console.log(data.data)
 
       } catch (error) {
         console.log(error);
       }
     };
     fetchData()
-  }, [text, filter]);
+  }, [text, filter, order_by, order_type]);
 
   const handleItemClick = async (item) => {
     try {
@@ -155,6 +203,12 @@ const Home = ({ navigation }) => {
               style={styles.filterIcon}
             />
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setSortModalVisible(true)}
+            style={styles.sortButton}
+          >
+            <FontAwesome name="sort" size={20} color="white" style={styles.sortIcon} />
+          </TouchableOpacity>
         </View>
       </LinearGradient>
 
@@ -214,18 +268,145 @@ const Home = ({ navigation }) => {
         </TouchableWithoutFeedback>
       </Modal>
 
+      <Modal
+        transparent={true}
+        visible={sortModalVisible}
+        onRequestClose={() => {
+          setSortModalVisible(false);
+        }}
+      >
+        <TouchableWithoutFeedback onPress={() => setSortModalVisible(false)}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'rgba(0,0,0,0.5)',
+            }}
+          >
+            <TouchableWithoutFeedback>
+              <View
+                style={{
+                  backgroundColor: 'white',
+                  padding: 20,
+                  borderRadius: 10,
+                  maxHeight: 400,
+                  width: '80%',
+                }}
+              >
+                <TouchableOpacity
+                  onPress={() => handleSortOptionSelect('price-up')}
+                  style={styles.sortOption}
+                >
+                  <Text style={styles.sortOptionText}>Preço ↑</Text>
+                  {selectedSortOption === 'price-up' && (
+                    <FontAwesome name="check" size={15} color="black" />
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => handleSortOptionSelect('price-down')}
+                  style={styles.sortOption}
+                >
+                  <Text style={styles.sortOptionText}>Preço ↓</Text>
+                  {selectedSortOption === 'price-down' && (
+                    <FontAwesome name="check" size={15} color="black" />
+                  )}
+                </TouchableOpacity>
+                
+                <TouchableOpacity
+                  onPress={() => handleSortOptionSelect('year-up')}
+                  style={styles.sortOption}
+                >
+                  <Text style={styles.sortOptionText}>Ano ↑</Text>
+                  {selectedSortOption === 'year-up' && (
+                    <FontAwesome name="check" size={15} color="black" />
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => handleSortOptionSelect('year-down')}
+                  style={styles.sortOption}
+                >
+                  <Text style={styles.sortOptionText}>Ano ↓</Text>
+                  {selectedSortOption === 'year-down' && (
+                    <FontAwesome name="check" size={15} color="black" />
+                  )}
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => handleSortOptionSelect('brand-up')}
+                  style={styles.sortOption}
+                >
+                  <Text style={styles.sortOptionText}>Marca ↑</Text>
+                  {selectedSortOption === 'brand-up' && (
+                    <FontAwesome name="check" size={15} color="black" />
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => handleSortOptionSelect('brand-down')}
+                  style={styles.sortOption}
+                >
+                  <Text style={styles.sortOptionText}>Marca ↓</Text>
+                  {selectedSortOption === 'brand-down' && (
+                    <FontAwesome name="check" size={15} color="black" />
+                  )}
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => handleSortOptionSelect('model-up')}
+                  style={styles.sortOption}
+                >
+                  <Text style={styles.sortOptionText}>Modelo ↑</Text>
+                  {selectedSortOption === 'model-up' && (
+                    <FontAwesome name="check" size={15} color="black" />
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => handleSortOptionSelect('model-down')}
+                  style={styles.sortOption}
+                >
+                  <Text style={styles.sortOptionText}>Modelo ↓</Text>
+                  {selectedSortOption === 'model-down' && (
+                    <FontAwesome name="check" size={15} color="black" />
+                  )}
+                </TouchableOpacity>
+                
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+
       <FlatList
         data={apiResponse}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
 
-      <Footer navigation={navigation}/>
+      <Footer navigation={navigation} />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  sortButton: {
+    marginLeft: 3,
+    marginRight:5,
+    backgroundColor: 'transparent',
+    padding: 5,
+  },
+  sortIcon: {
+    width: 20,
+    height: 20,
+  },
+  sortOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical:10,
+  },
+  sortOptionText: {
+    fontSize: 18,
+    marginLeft: 10,
+  },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -432,7 +613,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   filterButton: {
-    marginLeft: 8,
+    marginLeft: 15,
     marginRight: 12,
     backgroundColor: "white",
     borderRadius: 5,
@@ -441,8 +622,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   filterIcon: {
-    width: 30,
-    height: 30,
+    width: 20,
+    height: 20,
   },
 });
 

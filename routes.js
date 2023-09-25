@@ -17,7 +17,7 @@ export function Routes() {
             {user ? (
                 <>
                     <Stack.Screen
-                        name='Home'
+                        name="Home"
                         component={Home}
                     />
 
@@ -29,11 +29,11 @@ export function Routes() {
             ) : (
                 <>
                     <Stack.Screen
-                        name='Login'
+                        name="Login"
                         component={Login}
                     />
                     <Stack.Screen
-                        name='Cadastro'
+                        name="Cadastro"
                         component={Cadastro}
                     />
                 </>

@@ -12,7 +12,7 @@ export function AuthProvider(props) {
 
     async function handleLogin(loginText, passText) {
         try {
-            const { data } = await axios.post('http://192.168.0.106:5000/api/auth/login', {
+            const { data } = await axios.post('http://192.168.1.106:5000/api/auth/login', {
                 email: loginText, password: passText
             })
 
@@ -32,7 +32,7 @@ export function AuthProvider(props) {
         formData.append('password', password)
 
         try {
-            await axios.post('http://192.168.0.106:5000/api/user/', formData, {
+            await axios.post('http://192.168.1.106:5000/api/user/', formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }

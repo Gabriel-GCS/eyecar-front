@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 const AuthContext = createContext({})
 
 export function AuthProvider(props) {
-    const API_URL = "http://192.168.0.104:5000" 
+    const API_URL = "http://192.168.0.109:5000" 
     const [user, setUser] = useState(null);
     const navigation = useNavigation();
 

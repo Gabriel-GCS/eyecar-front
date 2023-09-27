@@ -19,7 +19,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import Footer from './Footer';
 
 const Search = ({ navigation }) => {
-  const API_URL = "http://192.168.0.104:5000" 
+  const API_URL = "http://192.168.0.109:5000" 
   const [text, setText] = useState('');
   const [order_by, setOrder_by] = useState('price');
   const [order_type, setOrder_type] = useState(-1);
@@ -32,6 +32,7 @@ const Search = ({ navigation }) => {
   const options = [
     { id: '1', label: 'Selecionar por marca' },
     { id: '2', label: 'Selecionar por modelo' },
+    { id: '3', label: 'Selecionar por nome'}
   ];
   const [sortModalVisible, setSortModalVisible] = useState(false);
   const [selectedSortOption, setSelectedSortOption] = useState(null);
@@ -129,6 +130,9 @@ const Search = ({ navigation }) => {
         }
         if (item.label == 'Selecionar por marca') {
           setFilter('brand');
+        }
+        if (item.label == 'Selecionar por nome') {
+          setFilter('name');
         }
         setModalVisible(false);
       }}

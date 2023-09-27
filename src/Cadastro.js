@@ -11,6 +11,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { useAuth } from "./contexts/AuthContext";
+import { LinearGradient } from "expo-linear-gradient";
 
 const image = { uri: 'https://cdn.discordapp.com/attachments/638525255744225280/1153450485525786734/pexels-yurii-hlei-1545743.jpg' }
 const logo = require('../assets/logo.png')
@@ -46,10 +47,15 @@ const Cadastro = ({ navigation }) => {
   };
 
   return (
-    <ImageBackground source={image} style={styles.image} blurRadius={8}>
+    <LinearGradient
+      colors={["black", "darkblue"]}
+      style={styles.container2}
+      start={{ x: 0, y: 0.5 }}
+      end={{ x: 1, y: 0.5 }}
+    >
       <SafeAreaView>
         <View style={styles.container}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 15 }}>
+          <View style={styles.logoContainer}>
             <Text style={styles.title}>
               EyeCar
             </Text>
@@ -60,15 +66,15 @@ const Cadastro = ({ navigation }) => {
             Cadastre-se
           </Text>
 
-          <TextInput style={styles.textInput} placeholder="Nome" onChangeText={text => setNameTxt(text)} />
-          <TextInput style={styles.textInput} placeholder="E-mail" clearButtonMode="always"
+          <TextInput style={styles.textInput} placeholderTextColor="white" placeholder="Nome" onChangeText={text => setNameTxt(text)} />
+          <TextInput style={styles.textInput} placeholderTextColor="white" placeholder="E-mail" clearButtonMode="always"
             onChangeText={(text) => handleCheckEmail(text)} />
           {checkValidEmail ? <Text style={styles.wrongTextFormat}>Wrong format email</Text> :
-            <Text></Text>}
-          <TextInput style={styles.textInput} placeholder="Senha" secureTextEntry onChangeText={text => setPassTxt(text)} />
-          <TextInput style={styles.textInput} placeholder="Confirma sua senha" secureTextEntry onChangeText={text => setConfirmPassTxt(text)} />
-          <TouchableOpacity style={styles.touch} onPress={createUser}>
-            <Text style={styles.btnLogin}>
+            <Text style={{marginTop:-15}}></Text>}
+          <TextInput style={styles.textInput} placeholderTextColor="white" placeholder="Senha" secureTextEntry onChangeText={text => setPassTxt(text)} />
+          <TextInput style={styles.textInput} placeholderTextColor="white" placeholder="Confirma sua senha" secureTextEntry onChangeText={text => setConfirmPassTxt(text)} />
+          <TouchableOpacity style={styles.btnLogin} onPress={createUser}>
+            <Text style={styles.textButton}>
               Registrar-se
             </Text>
           </TouchableOpacity>
@@ -79,7 +85,7 @@ const Cadastro = ({ navigation }) => {
 
         </View>
       </SafeAreaView>
-    </ImageBackground>
+    </LinearGradient>
   );
 }
 
@@ -88,36 +94,48 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 16,
   },
-
+  container2: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
   logo: {
     width: 110,
     height: 40,
   },
+  
+  textButton: {
+    color: 'white',
+    fontWeight: "bold",
+    fontSize: 15,
+  },
 
   title: {
-    textAlign: 'center',
+    textAlign: "left",
     fontWeight: 'bold',
     color: 'white',
     fontSize: 40,
   },
 
   text: {
-    marginTop: 100,
-    fontSize: 20,
+    marginTop: 70, // Adjust the marginTop to control the distance from the previous element
+    fontSize: 25,
     fontWeight: "bold",
     color: "white",
-    textAlign: "center",
-    textTransform: "uppercase",
+    textAlign: "left",
+    marginBottom: 10
   },
-
   textInput: {
-    padding: 16,
-    borderRadius: 8,
-    marginTop: 10,
+    padding: 10,
+    borderRadius: 25,
+    marginTop: 15,
     color: 'black',
-    backgroundColor: 'white',
-    borderBottomWidth: 3,
-    borderBottomColor: "#004aad"
+    backgroundColor: '#445FD2',
+    borderBottomWidth: 9,
+    borderBottomColor: "#004aad",
+    borderWidth: 2,
+    borderColor: "white",
+    borderRadius: 20,
   },
 
   image: {
@@ -126,23 +144,39 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  btnLogin: {
-    backgroundColor: "#004aad",
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 15,
+    marginTop: 20,
+  },
+
+   btnLogin: {
+    backgroundColor: "#223582",
     color: "white",
     textAlign: "center",
     fontWeight: "bold",
-    borderRadius: 15,
-    padding: 15,
-    marginTop: 10,
+    borderRadius: 20,
+    padding: 10,
+    alignItems: "center",
+    marginTop: 40,
+    borderBottomWidth: 9,
+    borderBottomColor: "#1B2B69",
+    borderWidth: 2,
+    borderColor: "white",
   },
-
   goBackText: {
     color: 'white',
     textAlign: 'center',
     fontSize: 16,
     marginTop: 20,
     textDecorationLine: 'underline',
-  }
+  },
+  wrongTextFormat: {
+    alignSelf: 'flex-end',
+    color: 'red',
+  },
 });
 
 export default Cadastro;

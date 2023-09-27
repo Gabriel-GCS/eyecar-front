@@ -67,6 +67,21 @@ const Car = ({ route, navigation }) => {
     toggleProblemas();
   };
 
+  const handleItemClick = async (item) => {
+    try {
+      const { data } = await axios(`${API_URL}/api/car/id?car_id=${item._id}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      });
+
+      navigation.navigate('Car', { carroSelecionado: data.data });
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -278,7 +293,7 @@ const Car = ({ route, navigation }) => {
 
                   <View style={styles.medidasInfoRow}>
                     <View style={styles.labelContainer}>
-                      <Text style={styles.label}>Poder máximo:</Text>
+                      <Text style={styles.label}>Potencia máxima:</Text>
                     </View>
                   </View>
                   <View style={styles.medidasInfoRow}>
@@ -392,13 +407,13 @@ const Car = ({ route, navigation }) => {
                   </View>
                   <View style={styles.medidasInfoRow}>
                     <View style={styles.labelContainer}>
-                      <Text style={styles.label}>Aceleração:</Text>
+                      <Text style={styles.label}>Aceleração (0-100 km/h):</Text>
                     </View>
                   </View>
                   <View style={styles.medidasInfoRow}>
                     <View style={styles.infoTextContainer}>
-                      <Text style={styles.infoTextBlack}>Gasolina: {carroSelecionado.performance.acceleration.gasoline} (0-100 km/h)s</Text>
-                      <Text style={styles.infoTextBlack}>Etanol: {carroSelecionado.performance.acceleration.ethanol} (0-100 km/h)s</Text>
+                      <Text style={styles.infoTextBlack}>Gasolina: {carroSelecionado.performance.acceleration.gasoline}s</Text>
+                      <Text style={styles.infoTextBlack}>Etanol: {carroSelecionado.performance.acceleration.ethanol}s</Text>
                     </View>
                   </View>
                 </View>

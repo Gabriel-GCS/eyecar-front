@@ -12,11 +12,15 @@ const Stack = createStackNavigator();
 
 export function Routes() {
     const { user } = useAuth()
-
     return (
         <Stack.Navigator initialRouteName='FirstPage' screenOptions={{ headerShown: false }}>
             {user ? (
                 <>
+                    <Stack.Screen
+                        name="Home"
+                        component={Home}
+                    />
+
                     <Stack.Screen
                         name="Search"
                         component={Search}
@@ -25,11 +29,6 @@ export function Routes() {
                     <Stack.Screen
                         name="Profile"
                         component={UserProfile}
-                    />
-
-                    <Stack.Screen
-                        name="Home"
-                        component={Home}
                     />
 
                     <Stack.Screen

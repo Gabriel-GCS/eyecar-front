@@ -1,11 +1,15 @@
 import React from "react";
 import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { LinearGradient } from "expo-linear-gradient";
 
 const Footer = ({ navigation }) => {
   return (
     <View style={styles.container}>
-
+      <LinearGradient
+        colors={["black", "darkblue"]}
+        style={styles.topSection}
+      >
       <TouchableOpacity
         style={styles.footerItem}
         onPress={() => navigation.goBack()}
@@ -39,6 +43,7 @@ const Footer = ({ navigation }) => {
         <Icon name="search" size={20} color="white" />
         <Text style={styles.footerText}>Buscar</Text>
       </TouchableOpacity>
+      </LinearGradient>
     </View>
   );
 };
@@ -49,7 +54,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "darkblue",
-    paddingVertical: 3,
   },
   footerItem: {
     alignItems: "center",
@@ -59,6 +63,13 @@ const styles = StyleSheet.create({
     color: "white",
     marginTop: 3,
     fontSize: 10,
+  },
+  topSection: {
+    paddingVertical: 3,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    flex: 1,
+    alignItems: "center",
   },
 });
 

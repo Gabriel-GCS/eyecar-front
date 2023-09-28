@@ -7,6 +7,7 @@ import Cadastro from './src/Cadastro';
 import Search from './src/Search';
 import Car from './src/Car';
 import Home from "./src/Home";
+import UserCar from "./src/UserCar"
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,11 @@ export function Routes() {
                     <Stack.Screen
                         name="Car"
                         component={Car}
+                    />
+
+                    <Stack.Screen
+                        name="UserCar"
+                        component={UserCar}
                     />
                 </>
             ) : (

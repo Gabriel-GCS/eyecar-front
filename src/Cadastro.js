@@ -48,7 +48,7 @@ const Cadastro = ({ navigation }) => {
 
   return (
     <LinearGradient
-      colors={["black", "darkblue"]}
+      colors={["black", "#03035B"]}
       style={styles.container2}
       start={{ x: 0, y: 0.5 }}
       end={{ x: 1, y: 0.5 }}

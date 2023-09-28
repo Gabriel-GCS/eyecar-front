@@ -72,7 +72,7 @@ const Car = ({ route, navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
-        colors={["white", "darkblue"]}
+        colors={["white", "#03035B"]}
         style={styles.topSection}
       >
         <View style={styles.header}>
@@ -614,7 +614,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "darkblue",
+    borderBottomColor: "#03035B",
   },
   carInfo: {
     flexDirection: "row", // Exiba a imagem e o texto na horizontal
@@ -680,7 +680,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white", // Cor de fundo cinza
     borderRadius: 45, // Bordas arredondadas
     padding: 10, // Espaçamento interno
-    borderColor: "darkblue",
+    borderColor: "#03035B",
     borderWidth: 1
   },
   medidasInfoRow: {

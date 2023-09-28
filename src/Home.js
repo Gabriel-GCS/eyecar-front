@@ -39,6 +39,7 @@ const Home = ({ navigation }) => {
           Authorization: `Bearer ${user.token}`
         }
       });
+
       navigation.navigate('Car', { carroSelecionado: data.data });
 
     } catch (error) {
@@ -49,13 +50,13 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={["black", "darkblue"]}
+        colors={["black", "#03035B"]}
         style={styles.background}
       >
         <ScrollView style={styles.scrollView}>
           <View style={styles.topSection}>
             <LinearGradient
-              colors={["black", "darkblue"]}
+              colors={["black", "#03035B"]}
               style={styles.headerContainer}
               start={{ x: 0, y: 0.5 }}
               end={{ x: 1, y: 0.5 }}
@@ -99,7 +100,7 @@ const Home = ({ navigation }) => {
                 <Text style={styles.iconText}>Veículos</Text>
               </View>
             </View>
-            <Text style={styles.carouselTitle}>Carros Favoritos</Text>
+            <Text style={styles.carouselTitle}>Mais Procurados</Text>
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}

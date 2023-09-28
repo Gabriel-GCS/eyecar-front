@@ -7,7 +7,7 @@ const Footer = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={["black", "darkblue"]}
+        colors={["black", "#03035B"]}
         style={styles.topSection}
       >
       <TouchableOpacity
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    backgroundColor: "darkblue",
+    backgroundColor: "#03035B",
   },
   footerItem: {
     alignItems: "center",

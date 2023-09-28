@@ -39,7 +39,7 @@ const Login = ({ navigation }) => {
 
   return (
     <LinearGradient
-      colors={["black", "darkblue"]}
+      colors={["black", "#03035B"]}
       style={styles.container}
     >
       <View style={styles.logoContainer}>
@@ -54,7 +54,7 @@ const Login = ({ navigation }) => {
       </Text>
       <View style={styles.loginBox}>
         <LinearGradient
-          colors={["black", "darkblue"]}
+          colors={["black", "#03035B"]}
           style={styles.loginBoxGradient}
         >
           <Text style={styles.text}>

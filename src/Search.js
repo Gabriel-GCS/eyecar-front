@@ -182,9 +182,9 @@ const Search = ({ navigation }) => {
   );
 
   return (
-    <View style={{ flex: 1, backgroundColor: "darkblue" }}>
+    <View style={{ flex: 1, backgroundColor: "#03035B" }}>
       <LinearGradient
-        colors={["black", "darkblue"]}
+        colors={["black", "#03035B"]}
         style={styles.headerContainer}
       >
         <Text style={styles.headerTitle}>Buscar Carros</Text>
@@ -466,7 +466,7 @@ const styles = StyleSheet.create({
     marginRight:4,
     padding: 10,
     borderWidth: 2,
-    borderColor: "darkblue",
+    borderColor: "#03035B",
     borderRadius: 45,
     backgroundColor: "white"
   },

@@ -11,18 +11,18 @@ const logo = require('../assets/logo.png');
 
 const Home = ({ navigation }) => {
   const { user } = useAuth();
-  const API_URL = 'http://192.168.0.109:5000';
+  const API_URL = 'http://192.168.43.234:5000';
   const [carData, setCarData] = useState({ data: [] });
 
   useEffect(() => {
     const fetchCarFavorites = async () => {
       try {
-        const { data } = await axios(`${API_URL}/api/car/car_favorites`,{
+        const { data } = await axios(`${API_URL}/api/car/car_favorites`, {
           headers: {
             Authorization: `Bearer ${user.token}`
           }
         });
-        
+
         setCarData(data);
       } catch (error) {
         console.error('Erro ao buscar carros favoritos:', error);
@@ -45,7 +45,7 @@ const Home = ({ navigation }) => {
       console.log(error);
     }
   };
-  
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -54,31 +54,46 @@ const Home = ({ navigation }) => {
       >
         <ScrollView style={styles.scrollView}>
           <View style={styles.topSection}>
-            <View style={styles.logoContainer}>
-              <Image source={logo} style={styles.logo} />
-              <Text style={styles.title}>EyeCar</Text>
-            </View>
+            <LinearGradient
+              colors={["black", "darkblue"]}
+              style={styles.headerContainer}
+              start={{ x: 0, y: 0.5 }}
+              end={{ x: 1, y: 0.5 }}
+            >
+              <View style={styles.titleAndLogoContainer}>
+                <View style={styles.titleContainer}>
+                  <Text style={styles.title}>EyeCar</Text>
+                  <Text style={styles.subtitle}>
+                    <Text>Sua visão ampliada para</Text>{"\n"}
+                    <Text>o mundo automotivo</Text>
+                  </Text>
+                </View>
+                <View style={styles.logoContainer}>
+                  <Image source={logo} style={styles.logo} />
+                </View>
+              </View>
+            </LinearGradient>
             <View style={styles.iconsContainer}>
               <View style={styles.iconContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Profile')}style={styles.icon}>
+                <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.icon}>
                   <FontAwesome name="user" size={25} color="white" />
                 </TouchableOpacity>
                 <Text style={styles.iconText}>Perfil</Text>
               </View>
               <View style={styles.iconContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Profile')}style={styles.icon}>
+                <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.icon}>
                   <FontAwesome name="heart" size={25} color="white" />
                 </TouchableOpacity>
                 <Text style={styles.iconText}>Favoritos</Text>
               </View>
               <View style={styles.iconContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Search')}style={styles.icon}>
+                <TouchableOpacity onPress={() => navigation.navigate('Search')} style={styles.icon}>
                   <FontAwesome name="search" size={25} color="white" />
                 </TouchableOpacity>
                 <Text style={styles.iconText}>Procurar</Text>
               </View>
               <View style={styles.iconContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Profile')}style={styles.icon}>
+                <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.icon}>
                   <FontAwesome name="car" size={25} color="white" />
                 </TouchableOpacity>
                 <Text style={styles.iconText}>Veículos</Text>
@@ -128,19 +143,48 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logoContainer: {
-    alignItems: 'center',
+    alignItems: 'flex-end', // Coloca a logo à direita
     justifyContent: 'center',
-    marginTop: 60,
+    flex: 1, // Para ocupar o espaço restante na linha
   },
   logo: {
     width: 110,
-    height: 40,
+    height: 40, // Aumenta o tamanho vertical da logo
+  },
+  titleAndLogoContainer: {
+    flexDirection: 'row', // Alinha o título e a logo na mesma linha
+    justifyContent: 'space-between', // Espaço entre o título e a logo
+    alignItems: 'center', // Alinha verticalmente ao centro
+    marginHorizontal: 15, // Adiciona margem para separação entre o título e a logo
+    marginTop:20,
+    marginBottom:20,
+  },
+  titleContainer: {
+    flexDirection: 'column', // Alinha o título e o subtítulo verticalmente
+    justifyContent: 'center',
+    alignItems: 'flex-start', // Alinha o título e o subtítulo à esquerda
   },
   title: {
     color: 'white',
-    fontSize: 40,
+    fontSize: 25,
     fontWeight: 'bold',
-    marginTop: 20,
+  },
+  subtitle: {
+    color: 'white',
+    marginTop: 10,
+    fontSize: 11,
+  },
+  headerContainer: {
+    width: "90%",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: "white",
+    borderRadius: 20,
+    padding: 1,
+    paddingHorizontal: 20,
+    marginTop: 65,
   },
   topSection: {
     alignItems: "center",
@@ -157,7 +201,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 50,
+    marginTop: 45,
   },
   iconContainer: {
     alignItems: 'center',
@@ -182,7 +226,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
-    marginTop: 40,
+    marginTop: 45,
     marginLeft: 10,
     marginBottom: 30,
   },

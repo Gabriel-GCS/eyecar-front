@@ -19,7 +19,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import Footer from './Footer';
 
 const Search = ({ navigation }) => {
-  const API_URL = "http://192.168.0.109:5000" 
+  const API_URL = "http://192.168.43.234:5000" 
   const [text, setText] = useState('');
   const [order_by, setOrder_by] = useState('price');
   const [order_type, setOrder_type] = useState(-1);
@@ -169,11 +169,11 @@ const Search = ({ navigation }) => {
         </View>
         <View style={styles.rightContainer}>
           <View style={styles.likeFavoriteItem}>
-            <FontAwesome name="thumbs-up" size={16} color="blue" />
+            <FontAwesome name="thumbs-up" size={15} color="blue" />
             <Text style={styles.likeFavoriteText}>{item.likes}</Text>
           </View>
           <View style={styles.likeFavoriteItem}>
-            <FontAwesome name="star" size={16} color="yellow" />
+            <FontAwesome name="star" size={15} color="orange" />
             <Text style={styles.likeFavoriteText}>{item.favorites}</Text>
           </View>
         </View>
@@ -182,7 +182,7 @@ const Search = ({ navigation }) => {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "darkblue" }}>
       <LinearGradient
         colors={["black", "darkblue"]}
         style={styles.headerContainer}
@@ -294,7 +294,7 @@ const Search = ({ navigation }) => {
                   padding: 20,
                   borderRadius: 10,
                   maxHeight: 400,
-                  width: '80%',
+                  width: '40%',
                 }}
               >
                 <TouchableOpacity
@@ -386,7 +386,7 @@ const Search = ({ navigation }) => {
       />
 
       <Footer navigation={navigation} />
-    </SafeAreaView>
+      </View>
   );
 }
 
@@ -448,7 +448,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 32,
     objectFit: "contain",
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
 
   modalContainer: {
@@ -462,7 +462,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginLeft:2,
+    marginRight:4,
     padding: 10,
+    borderWidth: 2,
+    borderColor: "darkblue",
+    borderRadius: 45,
+    backgroundColor: "white"
   },
 
   leftContainer: {
@@ -532,11 +538,12 @@ const styles = StyleSheet.create({
   likeFavoriteItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 16,
+    marginRight: 8,
   },
 
   likeFavoriteText: {
-    marginLeft: 4,
+    marginLeft: 3,
+    fontSize:12
   },
 
   emptyOptionCircle: {
@@ -570,6 +577,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
     marginBottom: 10,
+    marginTop:15,
   },
   searchContainer: {
     flexDirection: 'row',

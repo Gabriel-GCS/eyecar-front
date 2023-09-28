@@ -29,22 +29,36 @@ const UserProfile = () => {
                     style={styles.backButton}
                     onPress={() => navigation.goBack()}
                 >
-                    <Icon name="chevron-left" size={20} color="white" />
+                    <Icon name="chevron-left" size={20} color="white" marginTop={15} />
                 </TouchableOpacity>
                 <Text style={styles.headerTitle}>Perfil do Usuário</Text>
             </LinearGradient>
-        
+
             <View style={styles.content}>
                 <ScrollView style={styles.scrollView}>
                     {user ? (
                         <>
                             <View style={styles.userInfoContainer}>
-                                <Icon name="user" size={24} color="darkblue" />
-                                <Text style={styles.userInfo}>Nome: {user.name}</Text>
+                                <LinearGradient
+                                    colors={["black", "darkblue"]}
+                                    style={styles.userContainerGradient}
+                                    start={{ x: 0, y: 0.5 }}
+                                    end={{ x: 1, y: 0.5 }}
+                                >
+                                    <Icon name="user" size={24} color="white" marginLeft={7} />
+                                    <Text style={styles.userInfo}>Nome: {user.name}</Text>
+                                </LinearGradient>
                             </View>
                             <View style={styles.userInfoContainer}>
-                                <Icon name="envelope" size={24} color="darkblue" />
-                                <Text style={styles.userInfo}>Email: {user.email}</Text>
+                                <LinearGradient
+                                    colors={["black", "darkblue"]}
+                                    style={styles.userContainerGradient}
+                                    start={{ x: 0, y: 0.5 }}
+                                    end={{ x: 1, y: 0.5 }}
+                                >
+                                    <Icon name="envelope" size={24} color="white" />
+                                    <Text style={styles.userInfo}>Email: {user.email}</Text>
+                                </LinearGradient>
                             </View>
                             <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
                                 <Text style={styles.logoutButtonText}>Logout</Text>
@@ -59,6 +73,15 @@ const UserProfile = () => {
 };
 
 const styles = StyleSheet.create({
+    userContainerGradient: {
+        width:"80%",
+        borderRadius: 10,
+        padding: 10,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        backgroundColor: "darkblue",
+    },
     scrollView: {
         flex: 1,
     },
@@ -69,7 +92,6 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: "row",
         alignItems: "center",
-        marginTop: 20,
         paddingHorizontal: 16,
         paddingVertical: 20,
     },
@@ -77,11 +99,13 @@ const styles = StyleSheet.create({
         marginRight: 16,
     },
     headerTitle: {
+        marginTop: 15,
         fontSize: 20,
         fontWeight: "bold",
         color: "white",
     },
     content: {
+        backgroundColor: "darkblue",
         flex: 1,
         paddingHorizontal: 16,
         paddingVertical: 20,
@@ -94,6 +118,7 @@ const styles = StyleSheet.create({
     userInfo: {
         fontSize: 16,
         marginLeft: 10,
+        color: "white"
     },
     logoutButton: {
         backgroundColor: "darkred",

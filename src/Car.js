@@ -14,6 +14,8 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome"; // ou escolha um ícone de sua preferência
 import Footer from './Footer'; // Importe o componente Footer
 import { LinearGradient } from "expo-linear-gradient";
+import Intl from 'intl';
+import 'intl/locale-data/jsonp/pt-BR'; // Importe a localização desejada, por exemplo, pt-BR para o português brasileiro
 
 const Car = ({ route, navigation }) => {
   const { carroSelecionado } = route.params;
@@ -67,25 +69,10 @@ const Car = ({ route, navigation }) => {
     toggleProblemas();
   };
 
-  const handleItemClick = async (item) => {
-    try {
-      const { data } = await axios(`${API_URL}/api/car/id?car_id=${item._id}`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`
-        }
-      });
-
-      navigation.navigate('Car', { carroSelecionado: data.data });
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
-        colors={["lightslategrey", "darkblue"]}
+        colors={["white", "darkblue"]}
         style={styles.topSection}
       >
         <View style={styles.header}>
@@ -144,7 +131,7 @@ const Car = ({ route, navigation }) => {
                   Preço R$
                 </Text>
                 <Text style={styles.infoTextBlack}>
-                  {carroSelecionado.price},00
+                  {parseFloat(carroSelecionado.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                 </Text>
               </View>
             </View>
@@ -516,7 +503,7 @@ const Car = ({ route, navigation }) => {
                   </View>
                 </View>
               )}
-              
+
             </View>
             <View style={styles.separator}></View>
           </View>
@@ -601,6 +588,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    backgroundColor: "white"
   },
   topSection: {
     flex: 0.5,
@@ -689,9 +677,11 @@ const styles = StyleSheet.create({
   medidasInfoContainer: {
     marginTop: 10,
     alignItems: "center", // Centraliza os títulos na tela
-    backgroundColor: "lightgray", // Cor de fundo cinza
-    borderRadius: 10, // Bordas arredondadas
+    backgroundColor: "white", // Cor de fundo cinza
+    borderRadius: 45, // Bordas arredondadas
     padding: 10, // Espaçamento interno
+    borderColor: "darkblue",
+    borderWidth: 1
   },
   medidasInfoRow: {
     flexDirection: "row",
